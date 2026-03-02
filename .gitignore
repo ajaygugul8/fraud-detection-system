@@ -1,0 +1,22 @@
+ Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+*.pkl
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.DS_Store
+
+# ML data (too large for git)
+ml_training/data/
