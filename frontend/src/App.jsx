@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
 import Alerts from './pages/Alerts'
+import AppLayout from './components/AppLayout'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuthStore()
@@ -27,15 +28,18 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={
-          <ProtectedRoute><Dashboard /></ProtectedRoute>
-        } />
-        <Route path="/transactions" element={
-          <ProtectedRoute><Transactions /></ProtectedRoute>
-        } />
-        <Route path="/alerts" element={
-          <ProtectedRoute><Alerts /></ProtectedRoute>
-        } />
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/alerts" element={<Alerts />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   )
