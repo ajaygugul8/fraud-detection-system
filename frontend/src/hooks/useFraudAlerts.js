@@ -1,16 +1,15 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useFraudAlerts = () => {
-  const [alerts, setAlerts]     = useState([])
+  const [alerts, setAlerts]       = useState([])
   const [connected, setConnected] = useState(false)
 
   useEffect(() => {
-    const wsUrl = import.meta.env.VITE_WS_URL + '/alerts'
-    const ws   = new WebSocket(wsUrl)
+    const ws = new WebSocket(`${import.meta.env.VITE_WS_URL}/alerts`)
 
-    ws.onopen  = () => setConnected(true)
-    ws.onclose = () => setConnected(false)
-
+    ws.onopen    = () => setConnected(true)
+    ws.onclose   = () => setConnected(false)
+    ws.onerror   = () => setConnected(false)
     ws.onmessage = (event) => {
       try {
         const alert = JSON.parse(event.data)
@@ -21,7 +20,5 @@ export const useFraudAlerts = () => {
     return () => ws.close()
   }, [])
 
-  const clearAlerts = useCallback(() => setAlerts([]), [])
-
-  return { alerts, connected, clearAlerts }
+  return { alerts, connected }
 }
