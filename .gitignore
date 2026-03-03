@@ -1,22 +1,46 @@
- Python
+# ── Python ──
 __pycache__/
 *.pyc
 *.pyo
 venv/
-.env
 *.pkl
 *.egg-info/
 
-# Node
-node_modules/
-dist/
+# ── Environment Variables ──
 .env
 .env.local
+.env.production
 
-# IDE
-.vscode/
-.idea/
-*.DS_Store
+# ── Firebase (NEVER commit) ──
+firebase-service-account.json
 
-# ML data (too large for git)
+# ── Node / Frontend ──
+node_modules/
+dist/
+dist-ssr/
+*.local
+frontend/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs/
+*.log
+
+# ── ML Data (too large for git) ──
 ml_training/data/
+
+# ── IDE ──
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── Kaggle ──
+.kaggle/
