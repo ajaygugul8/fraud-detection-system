@@ -37,15 +37,15 @@ except Exception as e:
 
 @app.on_event("startup")
 async def startup_event():
-    # Move database creation here — runs AFTER app starts, not during import
     try:
         from app.db.base import Base
         from app.db.session import engine
+        # Import ALL models before creating tables — order matters!
+        from app.models import user, transaction, alert
         Base.metadata.create_all(bind=engine)
         logger.info("✅ Database tables ready")
     except Exception as e:
         logger.error(f"❌ Database error: {e}")
-        traceback.print_exc()
 
 @app.get("/")
 async def root():
