@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     ALGORITHM: str    = "HS256"
     ALLOWED_ORIGINS: List[str] = ["http://localhost:5173"]
     FIREBASE_PROJECT_ID: str = ""
+    FIREBASE_SERVICE_ACCOUNT_PATH: str = ""
 
     class Config:
         env_file = ".env"

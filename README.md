@@ -168,6 +168,7 @@ SECRET_KEY=your-secret-key
 ALGORITHM=HS256
 ALLOWED_ORIGINS=["http://localhost:5173"]
 FIREBASE_PROJECT_ID=your-firebase-project-id
+FIREBASE_SERVICE_ACCOUNT_PATH=./firebase-service-account.json
 ```
 
 ### Step 4 — Run Migrations
@@ -235,10 +236,11 @@ Expected response:
 ## 🔐 Firebase Setup
 
 1. Go to [console.firebase.google.com](https://console.firebase.google.com)
-2. Create project → Enable **Email/Password** authentication
-3. Add your Netlify domain to **Authorized Domains**
-4. Copy config to `frontend/.env`
-5. Download service account key → place in `backend/`
+2. Create project → Enable **Email/Password** authentication (optional)
+3. Enable **Google** authentication (required for Google login)
+4. Add your Netlify domain to **Authorized Domains**
+5. Copy config to `frontend/.env`
+6. Download service account key → place in `backend/`
 
 ---
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../services/firebase'
+import { login, loginWithGoogle } from '../services/firebase'
+import { syncUser } from '../services/api'
 
 export default function Login() {
   const [email, setEmail]       = useState('')
@@ -15,9 +16,24 @@ export default function Login() {
     setError('')
     try {
       await login(email, password)
+      await syncUser()
       navigate('/')
     } catch (err) {
       setError('Invalid email or password')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGoogleLogin = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      await loginWithGoogle()
+      await syncUser()
+      navigate('/')
+    } catch (err) {
+      setError('Google sign-in failed')
     } finally {
       setLoading(false)
     }
@@ -46,6 +62,20 @@ export default function Login() {
           )}
 
           <div className="space-y-5">
+            <button
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className="w-full bg-white hover:bg-gray-100 disabled:bg-white/60 text-black font-semibold rounded-lg px-4 py-3 text-sm transition-colors"
+            >
+              {loading ? 'Signing in...' : 'Continue with Google'}
+            </button>
+
+            <div className="flex items-center gap-3">
+              <div className="h-px bg-gray-800 flex-1" />
+              <span className="text-gray-500 text-xs">or</span>
+              <div className="h-px bg-gray-800 flex-1" />
+            </div>
+
             <div>
               <label className="text-gray-400 text-sm block mb-2">Email</label>
               <input

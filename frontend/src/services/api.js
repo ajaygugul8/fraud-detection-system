@@ -30,4 +30,8 @@ export const getAlerts = () =>
 export const reviewAlert = (id, status) =>
   api.patch(`/api/alerts/${id}`, { status })
 
+// Auth
+export const syncUser = () =>
+  api.post('/api/auth/sync')
+
 export default api
