@@ -62,20 +62,6 @@ export default function Login() {
           )}
 
           <div className="space-y-5">
-            <button
-              onClick={handleGoogleLogin}
-              disabled={loading}
-              className="w-full bg-white hover:bg-gray-100 disabled:bg-white/60 text-black font-semibold rounded-lg px-4 py-3 text-sm transition-colors"
-            >
-              {loading ? 'Signing in...' : 'Continue with Google'}
-            </button>
-
-            <div className="flex items-center gap-3">
-              <div className="h-px bg-gray-800 flex-1" />
-              <span className="text-gray-500 text-xs">or</span>
-              <div className="h-px bg-gray-800 flex-1" />
-            </div>
-
             <div>
               <label className="text-gray-400 text-sm block mb-2">Email</label>
               <input
@@ -104,6 +90,20 @@ export default function Login() {
               className="w-full bg-green-500 hover:bg-green-400 disabled:bg-green-500/50 text-black font-semibold rounded-lg px-4 py-3 text-sm transition-colors"
             >
               {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+
+            <div className="flex items-center gap-3 pt-2">
+              <div className="h-px bg-gray-800 flex-1" />
+              <span className="text-gray-500 text-xs font-mono">or</span>
+              <div className="h-px bg-gray-800 flex-1" />
+            </div>
+
+            <button
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className="w-full bg-pink-500 hover:bg-pink-400 disabled:bg-pink-500/50 text-white font-semibold rounded-lg px-4 py-3 text-sm transition-colors"
+            >
+              {loading ? 'Signing in...' : 'Continue with Google'}
             </button>
           </div>
         </div>
